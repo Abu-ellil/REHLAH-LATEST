@@ -5,7 +5,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
+  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link' | 'caption' | 'large';
 };
 
 export function ThemedText({
@@ -26,6 +26,9 @@ export function ThemedText({
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
+        type === 'caption' ? styles.caption : undefined,
+        type === 'large' ? styles.large : undefined,
+        styles.arabicText,
         style,
       ]}
       {...rest}
@@ -34,6 +37,11 @@ export function ThemedText({
 }
 
 const styles = StyleSheet.create({
+  arabicText: {
+    fontFamily: 'Almarai-Regular',
+    textAlign: 'right',
+    writingDirection: 'rtl',
+  },
   default: {
     fontSize: 16,
     lineHeight: 24,
@@ -41,20 +49,31 @@ const styles = StyleSheet.create({
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontFamily: 'Almarai-Bold',
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
+    fontSize: 28,
+    fontFamily: 'Almarai-Bold',
+    lineHeight: 36,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Almarai-Bold',
+    lineHeight: 28,
+  },
+  large: {
+    fontSize: 18,
+    lineHeight: 26,
+  },
+  caption: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontFamily: 'Almarai-Light',
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
+    fontFamily: 'Almarai-Regular',
   },
 });
